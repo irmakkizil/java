@@ -22,15 +22,24 @@ public class HotelDAO {
      * Kullanıcı girişi kontrolü.
      * Kullanıcı Adı, E-posta veya TC Kimlik No ile giriş yapılabilir.
      */
+    // --- 1. GİRİŞ İŞLEMİ (GÜNCELLENDİ: BÜYÜK/KÜÇÜK HARF DUYARLI) ---
     public String login(String input, String password) {
         String role = null;
-        // Singleton deseni ile oluşturulan veritabanı bağlantısını alıyoruz
         try (Connection conn = DatabaseConnection.getInstance().getConnection()) {
-            String sql = "SELECT role FROM users WHERE (username = ? OR email = ? OR tc_no = ?) AND password_hash = ?";
+            // BINARY komutu, verinin byte-byte (birebir) eşleşmesini zorunlu kılar.
+            // Artık 'Admin' ile 'admin' farklı sayılacak. Türkçe karakterler (ı, i, ğ, ü) karışmayacak.
+            String sql = "SELECT role FROM users WHERE " +
+                    "(BINARY username = ? OR BINARY email = ? OR tc_no = ?) " +
+                    "AND BINARY password_hash = ?";
+
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, input); ps.setString(2, input); ps.setString(3, input); ps.setString(4, password);
+            ps.setString(1, input);
+            ps.setString(2, input);
+            ps.setString(3, input);
+            ps.setString(4, password);
+
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) role = rs.getString("role"); // Rolü (CUSTOMER veya STAFF) döndür
+            if (rs.next()) role = rs.getString("role");
         } catch (Exception e) { e.printStackTrace(); }
         return role;
     }
