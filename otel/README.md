@@ -64,50 +64,18 @@ Odaların durum değişimleri (*Müsait → Rezerve → Dolu*) State Pattern ile
 
 ---
 
-## 📦 Proje Yapısı
-otel
-├── .idea                  (IntelliJ ayar dosyaları)
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   ├── config
-│   │   │   │   └── DatabaseConnection.java
-│   │   │   ├── dao
-│   │   │   │   └── HotelDAO.java
-│   │   │   ├── model
-│   │   │   │   ├── CustomerDTO.java
-│   │   │   │   ├── FamilyRoom.java
-│   │   │   │   ├── Reservation.java
-│   │   │   │   ├── Room.java
-│   │   │   │   ├── StandardRoom.java
-│   │   │   │   ├── SuiteRoom.java
-│   │   │   │   └── User.java
-│   │   │   ├── org.example
-│   │   │   │   └── Main.java
-│   │   │   ├── patterns
-│   │   │   │   ├── factory
-│   │   │   │   │   └── RoomFactory.java
-│   │   │   │   ├── observer
-│   │   │   │   │   ├── NotificationService.java
-│   │   │   │   │   └── Observer.java
-│   │   │   │   ├── state
-│   │   │   │   │   ├── AvailableState.java   (State Pattern - Concrete)
-│   │   │   │   │   ├── BookedState.java      (State Pattern - Concrete)
-│   │   │   │   │   ├── OccupiedState.java    (State Pattern - Concrete)
-│   │   │   │   │   └── RoomState.java        (State Pattern - Interface)
-│   │   │   │   └── strategy
-│   │   │   │       ├── DiscountPricingStrategy.java
-│   │   │   │       ├── NormalPricingStrategy.java
-│   │   │   │       └── PricingStrategy.java
-│   │   │   └── view
-│   │   │       └── MainFrame.java
-│   │   │
-│   │   └── resources      (Görseller ve ayar dosyaları)
-│   │
-│   └── test               (Test kodları)
-│       └── java
-│
-├── target                 (Derlenmiş dosyalar)
-├── .gitignore
-├── pom.xml                (Maven ayarları)
-└── External Libraries
+## ⚡ Özellikler
+
+- *Oda Yönetimi:* Standart, Suite ve Aile odaları için rezervasyon yönetimi.
+- *Müşteri Takibi:* Müşteri bilgilerini kaydetme ve düzenleme.
+- *Tasarım Desenleri Kullanımı:* Factory, Observer, State ve Strategy desenleri uygulanmıştır.
+- *Veritabanı Bağlantısı:* DatabaseConnection sınıfı ile temel veritabanı işlemleri yapılabilir.
+- *GUI Arayüzü:* MainFrame üzerinden kullanıcı dostu arayüz.
+
+---
+
+## 🛠 Gereksinimler
+
+- Java 11 veya üzeri
+- Maven
+- IntelliJ IDEA (tercihli)
