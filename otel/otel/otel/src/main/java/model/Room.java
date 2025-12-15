@@ -3,11 +3,11 @@ package model;
 import patterns.state.RoomState;
 import patterns.state.AvailableState;
 
-// PDF Madde 32: İkinci Abstract Class
+
 public abstract class Room {
     protected String roomNumber;
     protected double basePrice;
-    protected RoomState state; // State Deseni burada devreye giriyor
+    protected RoomState state; // State Deseni 
 
     public Room(String roomNumber, double basePrice) {
         this.roomNumber = roomNumber;
