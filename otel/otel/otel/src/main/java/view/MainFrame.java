@@ -69,7 +69,7 @@ public class MainFrame extends JFrame implements Observer {
         return panel;
     }
 
-    // --- 2. KAYIT (GÜNCELLENDİ: BUILDER DESENİ KULLANIMI) ---
+    // --- 2. KAYIT  ---
     /**
      * Müşteri Kayıt Ekranı
      * Burada BUILDER Tasarım Deseni kullanılarak 'CustomerDTO' nesnesi oluşturulur.
@@ -145,7 +145,7 @@ public class MainFrame extends JFrame implements Observer {
         JPanel tC = new JPanel(new BorderLayout()); tC.add(fP, BorderLayout.CENTER); tC.add(bS, BorderLayout.SOUTH);
         sP.add(tC, BorderLayout.NORTH); sP.add(new JScrollPane(mT), BorderLayout.CENTER); sP.add(bB, BorderLayout.SOUTH); tabs.addTab("Oda Ara", sP);
 
-        // GEÇMİŞ ve PROFİL (Değişiklik yok)
+        // GEÇMİŞ ve PROFİL 
         JPanel hP = new JPanel(new BorderLayout()); DefaultTableModel hM = new DefaultTableModel(new String[]{"ID", "Oda", "Giriş", "Çıkış", "Tutar", "Durum"}, 0); JTable hT = new JTable(hM); JButton hR = new JButton("Yenile"); JButton hC = new JButton("İptal Et"); JPanel hB = new JPanel(); hB.add(hR); hB.add(hC);
         hR.addActionListener(e -> { hM.setRowCount(0); Vector<Vector<Object>> d = dao.getCustomerReservations(currentUserId); for (Vector<Object> row : d) hM.addRow(row); });
         hC.addActionListener(e -> { int rw = hT.getSelectedRow(); if(rw!=-1) { if(dao.cancelReservation((int)hM.getValueAt(rw,0), (String)hM.getValueAt(rw,1))) { JOptionPane.showMessageDialog(this, "İptal Edildi."); hR.doClick(); }} else JOptionPane.showMessageDialog(this, "Seçim yapın."); });
@@ -157,7 +157,7 @@ public class MainFrame extends JFrame implements Observer {
         JPanel mP = new JPanel(new BorderLayout()); JButton bL = new JButton("Çıkış"); bL.addActionListener(e -> cardLayout.show(mainPanel, "LOGIN")); mP.add(tabs, BorderLayout.CENTER); mP.add(bL, BorderLayout.NORTH); return mP;
     }
 
-    // --- 4. PERSONEL PANELİ (GÜNCELLENDİ: STRATEGY SEÇİMİ) ---
+    // --- 4. PERSONEL PANELİ  ---
     /**
      * Personel Paneli
      * - Factory Deseni: Yeni oda eklerken 'RoomFactory' kullanır.
@@ -188,7 +188,7 @@ public class MainFrame extends JFrame implements Observer {
         btnNewCust.addActionListener(e -> { returnToPanel="STAFF"; cardLayout.show(mainPanel, "REGISTER"); JOptionPane.showMessageDialog(this, "Yönlendirildi."); });
         custP.add(custTop, BorderLayout.NORTH); custP.add(new JScrollPane(cTable), BorderLayout.CENTER); tabs.addTab("Müşteri Yönetimi", custP);
 
-        // REZERVASYON YÖNETİMİ (STRATEGY SEÇİMİ EKLENDİ)
+        // REZERVASYON YÖNETİMİ
         JPanel resP = new JPanel(new BorderLayout()); JPanel filterP = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JTextField fName = new JTextField(7); JTextField fRoom = new JTextField(5); JTextField fDateS = new JTextField(7); JTextField fDateE = new JTextField(7); JButton btnFilter = new JButton("🔍 Filtrele");
         JButton btnCheckIn = new JButton("Check-In"); JButton btnCheckOut = new JButton("Check-Out"); JButton btnCancel = new JButton("❌ İptal"); JButton btnNewRes = new JButton("+ TC ile Rezervasyon");
