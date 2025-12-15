@@ -11,7 +11,7 @@ public class RoomFactory {
             return new StandardRoom(roomNumber);
         } else if (type.equalsIgnoreCase("Suit")) {
             return new SuiteRoom(roomNumber);
-        } else if (type.equalsIgnoreCase("Aile")) { // ARTIK AİLE ODASI DA ÜRETİLİYOR
+        } else if (type.equalsIgnoreCase("Aile")) { 
             return new FamilyRoom(roomNumber);
         }
         return null;
