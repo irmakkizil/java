@@ -22,12 +22,12 @@ public class HotelDAO {
      * Kullanıcı girişi kontrolü.
      * Kullanıcı Adı, E-posta veya TC Kimlik No ile giriş yapılabilir.
      */
-    // --- 1. GİRİŞ İŞLEMİ (GÜNCELLENDİ: BÜYÜK/KÜÇÜK HARF DUYARLI) ---
+    // --- 1. GİRİŞ İŞLEMİ  ---
     public String login(String input, String password) {
         String role = null;
         try (Connection conn = DatabaseConnection.getInstance().getConnection()) {
             // BINARY komutu, verinin byte-byte (birebir) eşleşmesini zorunlu kılar.
-            // Artık 'Admin' ile 'admin' farklı sayılacak. Türkçe karakterler (ı, i, ğ, ü) karışmayacak.
+            
             String sql = "SELECT role FROM users WHERE " +
                     "(BINARY username = ? OR BINARY email = ? OR tc_no = ?) " +
                     "AND BINARY password_hash = ?";
@@ -59,7 +59,7 @@ public class HotelDAO {
         return id;
     }
 
-    // --- 3. MÜŞTERİ KAYIT (BUILDER DESENİ ENTEGRASYONU) ---
+    // --- 3. MÜŞTERİ KAYIT (BUILDER DESENİ) ---
     /**
      * Yeni müşteri kaydı oluşturur.
      * Parametre olarak Builder Tasarım Deseni ile oluşturulmuş CustomerDTO nesnesini alır.
@@ -187,7 +187,7 @@ public class HotelDAO {
         return availableRooms;
     }
 
-    // --- 7. REZERVASYON YAPMA (STRATEGY DESENİ ENTEGRASYONU) ---
+    // --- 7. REZERVASYON YAPMA (STRATEGY DESENİ ) ---
     /**
      * Rezervasyon işlemini gerçekleştirir.
      * 1. Odanın kapasitesini kontrol eder.
