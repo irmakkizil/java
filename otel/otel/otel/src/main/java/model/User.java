@@ -1,6 +1,6 @@
 package model;
 
-// PDF Madde 32: En az 2 Abstract Class zorunluluğu
+
 public abstract class User {
     protected int id;
     protected String username;
