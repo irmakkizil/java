@@ -1,4 +1,4 @@
-package patterns.state; // Dikkat: Paket ismini yapına göre ayarladım
+package patterns.state; 
 import model.Room;
 
 public interface RoomState {
